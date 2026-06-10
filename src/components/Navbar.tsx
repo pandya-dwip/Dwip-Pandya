@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const navItems = [
   { name: 'Home', href: '#home' },
@@ -14,32 +14,12 @@ const navItems = [
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Initialize theme
+  // Initialize theme (ensuring dark theme is set)
   useEffect(() => {
-    const isDark = document.documentElement.classList.contains('dark') || 
-                   (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    setDarkMode(isDark);
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    document.documentElement.classList.add('dark');
   }, []);
-
-  const toggleDarkMode = () => {
-    const nextDark = !darkMode;
-    setDarkMode(nextDark);
-    if (nextDark) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  };
 
   // Shrink navbar on scroll
   useEffect(() => {
@@ -149,25 +129,8 @@ export default function Navbar() {
           })}
         </motion.nav>
 
-        {/* Right Side Options: Theme Toggle & Mobile Menu */}
+        {/* Right Side Options: Mobile Menu */}
         <div className="flex items-center gap-4">
-          {/* Light/Dark Toggle */}
-          <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            onClick={toggleDarkMode}
-            className="magnetic p-2.5 rounded-full border border-brand-border hover:bg-brand-surface/80 text-brand-text transition-all duration-300 relative overflow-hidden"
-            aria-label="Toggle light/dark mode"
-          >
-            <motion.div
-              animate={{ rotate: darkMode ? 180 : 0 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {darkMode ? <Sun size={18} className="text-amber-400" /> : <Moon size={18} className="text-slate-700" />}
-            </motion.div>
-          </motion.button>
-
           {/* Mobile Menu Button */}
           <motion.button
             initial={{ opacity: 0, scale: 0.8 }}

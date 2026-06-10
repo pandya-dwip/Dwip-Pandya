@@ -1,5 +1,5 @@
 import { motion as framerMotion } from 'framer-motion';
-import { Database, Network, Smartphone, Monitor, ShieldCheck } from 'lucide-react';
+import { Database, Network, Smartphone, Monitor, ShieldCheck, Folder, Star, Sparkles } from 'lucide-react';
 import { GitHubIcon } from './BrandIcons';
 
 interface Project {
@@ -10,7 +10,7 @@ interface Project {
   tech: string[];
   bullets: string[];
   github?: string;
-  visual: 'dashboard' | 'telemetry' | 'mobile' | 'browser' | 'api';
+  visual: 'dashboard' | 'telemetry' | 'mobile' | 'browser' | 'api' | 'nuvio';
 }
 
 const projects: Project[] = [
@@ -25,7 +25,7 @@ const projects: Project[] = [
       'Developed automated Excel and Google Sheets export producing structured multi-sheet reports.'
     ],
     tech: ['Vite', 'React', 'ExcelJS', 'Tailwind CSS'],
-    github: 'https://github.com/pandya-dwip',
+    github: 'https://github.com/pandya-dwip/qa-report-generator',
     visual: 'dashboard',
   },
   {
@@ -39,7 +39,7 @@ const projects: Project[] = [
       'Enabled configurable test durations and dynamic sensor selections to reduce manual monitoring effort.'
     ],
     tech: ['Python', 'PyTest', 'MQTT', 'CSV'],
-    github: 'https://github.com/pandya-dwip',
+    github: 'https://github.com/pandya-dwip/RTU-Monitoring',
     visual: 'telemetry',
   },
   {
@@ -53,7 +53,6 @@ const projects: Project[] = [
       'Improved test stability using optimized wait strategies, GetIt dependency reset handling, and resilient assertions.'
     ],
     tech: ['Flutter', 'Dart', 'Integration Test', 'GetIt'],
-    github: 'https://github.com/pandya-dwip',
     visual: 'mobile',
   },
   {
@@ -67,7 +66,6 @@ const projects: Project[] = [
       'Handled dynamic elements using parameterized locators and flexible selectors for reliable cross-run stability.'
     ],
     tech: ['Playwright', 'TypeScript', 'JavaScript', 'Page Object Model'],
-    github: 'https://github.com/pandya-dwip',
     visual: 'browser',
   },
   {
@@ -81,8 +79,21 @@ const projects: Project[] = [
       'Performed response, schema, and business logic validation with status code and error checks.'
     ],
     tech: ['Postman', 'JavaScript', 'Newman', 'REST APIs'],
-    github: 'https://github.com/pandya-dwip',
     visual: 'api',
+  },
+  {
+    id: 6,
+    title: 'Nuvio',
+    category: 'Flutter (Dart) — Premium Notes App',
+    description: 'A premium minimalist notes app designed to help you capture ideas, organize thoughts, and structure your life with elegance and ease. Nuvio is 100% offline — your data never leaves your device.',
+    bullets: [
+      'Rich block-based note editor supporting text, checklists, quotes, images, files, and 50 premium accent colors.',
+      'Nested folder structure with custom color selections, pinned folders/notes, and dedicated favorite views.',
+      'Offline data management: backup export/import, local manual/automated backup scheduling, and restore history.'
+    ],
+    tech: ['Flutter', 'Dart', 'Riverpod', 'SharedPreferences', 'Path Provider'],
+    github: 'https://github.com/pandya-dwip/nuvio',
+    visual: 'nuvio',
   },
 ];
 
@@ -170,7 +181,7 @@ export default function Projects() {
             <div className="w-[170px] h-[300px] rounded-[32px] bg-slate-900 border-4 border-slate-800 p-2 flex flex-col justify-between shadow-2xl relative">
               {/* Speaker */}
               <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-3 bg-slate-800 rounded-full z-20" />
-              
+
               {/* Screen Contents */}
               <div className="w-full h-full rounded-[24px] bg-slate-950 border border-slate-900 p-3 font-mono text-[8px] text-slate-400 flex flex-col justify-between overflow-hidden">
                 <div className="flex justify-between items-center pt-2">
@@ -278,21 +289,100 @@ export default function Projects() {
             </div>
           </div>
         );
+      case 'nuvio':
+        return (
+          <div className="w-full h-full flex justify-center items-center">
+            {/* Mobile casing mockup */}
+            <div className="w-[170px] h-[300px] rounded-[32px] bg-slate-900 border-4 border-slate-800 p-2 flex flex-col justify-between shadow-2xl relative">
+              {/* Speaker */}
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-3 bg-slate-800 rounded-full z-20" />
+
+              {/* Screen Contents */}
+              <div className="w-full h-full rounded-[24px] bg-slate-950 border border-slate-900 p-3 font-sans text-[8px] text-slate-400 flex flex-col justify-between overflow-hidden">
+                {/* Header */}
+                <div className="flex justify-between items-center pt-2">
+                  <span className="text-[10px] font-bold text-slate-100 flex items-center gap-1 font-outfit">
+                    <Sparkles size={10} className="text-amber-400 animate-pulse" />
+                    Nuvio
+                  </span>
+                  <span className="text-[7px] text-slate-500 font-mono">100% Offline</span>
+                </div>
+
+                {/* Folders Row */}
+                <div className="mt-3">
+                  <span className="text-[7px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Folders</span>
+                  <div className="grid grid-cols-2 gap-1">
+                    <div className="bg-slate-900 p-1.5 rounded-lg border border-slate-800 flex items-center gap-1.5">
+                      <Folder size={10} className="text-blue-400" />
+                      <div className="truncate">
+                        <p className="text-[7px] text-slate-200 font-bold truncate">Ideas</p>
+                        <p className="text-[5px] text-slate-500">12 notes</p>
+                      </div>
+                    </div>
+                    <div className="bg-slate-900 p-1.5 rounded-lg border border-slate-800 flex items-center gap-1.5">
+                      <Folder size={10} className="text-violet-400" />
+                      <div className="truncate">
+                        <p className="text-[7px] text-slate-200 font-bold truncate">Life</p>
+                        <p className="text-[5px] text-slate-500">5 notes</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Notes List */}
+                <div className="flex-grow mt-3 overflow-hidden flex flex-col justify-start">
+                  <span className="text-[7px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Pinned Notes</span>
+                  <div className="space-y-1">
+                    {/* Note Card 1 */}
+                    <div className="bg-slate-900/60 p-2 rounded-xl border-l-2 border-l-amber-400 border border-slate-800/80">
+                      <div className="flex justify-between items-center mb-0.5">
+                        <span className="text-[7px] text-slate-200 font-extrabold truncate">💡 Side Project Ideas</span>
+                        <Star size={7} className="text-amber-400 fill-amber-400" />
+                      </div>
+                      <p className="text-[6px] text-slate-400 truncate">Rich block editor mockup setup...</p>
+                    </div>
+
+                    {/* Note Card 2 */}
+                    <div className="bg-slate-900/60 p-2 rounded-xl border-l-2 border-l-violet-400 border border-slate-800/80">
+                      <div className="flex justify-between items-center mb-0.5">
+                        <span className="text-[7px] text-slate-200 font-extrabold truncate">📝 Flutter Architecture</span>
+                        <Star size={7} className="text-amber-400 fill-amber-400" />
+                      </div>
+                      <p className="text-[6px] text-slate-400 truncate">Riverpod (StateNotifier) for clean...</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Accent Colors Indicator */}
+                <div className="pt-2 border-t border-slate-900/80 flex justify-between items-center">
+                  <div className="flex gap-0.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-violet-400" />
+                  </div>
+                  <span className="text-[6px] text-slate-500 font-bold uppercase">50+ Colors</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
       default:
         return null;
     }
   };
 
   return (
-    <section 
-      id="projects" 
+    <section
+      id="projects"
       className="relative min-h-screen w-full flex items-center justify-center py-24 px-6 md:px-12 overflow-hidden"
     >
       {/* Glow details */}
       <div className="absolute w-[45vw] h-[45vw] rounded-full bg-brand-primary/5 glow-blob top-10 left-10 pointer-events-none" />
 
       <div className="max-w-7xl w-full mx-auto relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-left mb-24">
           <div className="flex items-center gap-2 mb-4">
@@ -315,14 +405,12 @@ export default function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
-                className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center ${
-                  isEven ? '' : 'lg:flex-row-reverse'
-                }`}
+                className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center ${isEven ? '' : 'lg:flex-row-reverse'
+                  }`}
               >
                 {/* Visual Mockup Column */}
-                <div className={`col-span-1 lg:col-span-6 w-full h-[320px] sm:h-[400px] glass-panel rounded-2xl p-6 relative group overflow-hidden ${
-                  isEven ? 'lg:order-1' : 'lg:order-2'
-                }`}>
+                <div className={`col-span-1 lg:col-span-6 w-full h-[320px] sm:h-[400px] glass-panel rounded-2xl p-6 relative group overflow-hidden ${isEven ? 'lg:order-1' : 'lg:order-2'
+                  }`}>
                   <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary/5 via-transparent to-brand-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   <div className="w-full h-full flex justify-center items-center transform group-hover:scale-[1.02] transition-transform duration-500">
                     {renderVisualMockup(proj.visual)}
@@ -330,9 +418,8 @@ export default function Projects() {
                 </div>
 
                 {/* Details Column */}
-                <div className={`col-span-1 lg:col-span-6 flex flex-col items-start text-left ${
-                  isEven ? 'lg:order-2' : 'lg:order-1'
-                }`}>
+                <div className={`col-span-1 lg:col-span-6 flex flex-col items-start text-left ${isEven ? 'lg:order-2' : 'lg:order-1'
+                  }`}>
                   {/* Project Tag */}
                   <span className="text-xs font-mono font-bold text-brand-primary tracking-widest uppercase mb-3 block">
                     {proj.category}
@@ -361,8 +448,8 @@ export default function Projects() {
                   {/* Tech stack badges */}
                   <div className="flex flex-wrap gap-2 mb-8">
                     {proj.tech.map((t, idx) => (
-                      <span 
-                        key={idx} 
+                      <span
+                        key={idx}
                         className="text-xs font-mono px-3 py-1 rounded-full border border-brand-border bg-brand-surface text-brand-text font-medium"
                       >
                         {t}
@@ -371,17 +458,19 @@ export default function Projects() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex items-center gap-4">
-                    <a
-                      href={proj.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="magnetic px-5 py-2.5 rounded-xl bg-brand-text text-brand-bg hover:bg-brand-surface hover:text-brand-text border border-brand-text text-xs font-bold tracking-wide transition-all duration-300 flex items-center gap-2 cursor-pointer shadow-sm"
-                    >
-                      <GitHubIcon size={14} />
-                      <span>Source Code</span>
-                    </a>
-                  </div>
+                  {proj.github && (
+                    <div className="flex items-center gap-4">
+                      <a
+                        href={proj.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="magnetic px-5 py-2.5 rounded-xl bg-brand-text text-brand-bg hover:bg-brand-surface hover:text-brand-text border border-brand-text text-xs font-bold tracking-wide transition-all duration-300 flex items-center gap-2 cursor-pointer shadow-sm"
+                      >
+                        <GitHubIcon size={14} />
+                        <span>Source Code</span>
+                      </a>
+                    </div>
+                  )}
                 </div>
               </framerMotion.div>
             );

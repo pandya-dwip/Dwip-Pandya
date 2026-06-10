@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Code, Cpu, ArrowRight, FileText } from 'lucide-react';
 
@@ -17,8 +17,25 @@ interface MousePos {
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
-  const [mousePos, setMousePos] = useState<MousePos>({ x: 0, y: 0 });
+  const [mousePos, setMousePos] = useState<MousePos>({ x: 600, y: 400 });
+  const [cardRotation, setCardRotation] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    
+    // Normalize and limit rotation to max 10 degrees
+    const rotateX = -(y / (rect.height / 2)) * 10;
+    const rotateY = (x / (rect.width / 2)) * 10;
+    
+    setCardRotation({ x: rotateX, y: rotateY });
+  };
+
+  const handleCardMouseLeave = () => {
+    setCardRotation({ x: 0, y: 0 });
+  };
 
   // Role switching cycle
   useEffect(() => {
@@ -221,11 +238,8 @@ export default function Hero() {
 
             {/* Download Resume Link */}
             <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                alert('Resume download started! (Simulated demonstration)');
-              }}
+              href="/Software_QA_Engineer.pdf"
+              download="Software_QA_Engineer.pdf"
               className="magnetic px-5 py-3.5 bg-transparent hover:bg-brand-surface/20 text-brand-text-muted hover:text-brand-text rounded-xl font-semibold text-sm tracking-wide transition-all duration-300 flex items-center gap-2"
             >
               <FileText size={16} />
@@ -247,10 +261,12 @@ export default function Hero() {
         >
           {/* Parallax Card Container */}
           <div 
-            className="w-full max-w-[480px] lg:max-w-none glass-panel rounded-2xl p-6 relative overflow-hidden transition-transform duration-300 hover:shadow-2xl border-brand-border/60"
+            onMouseMove={handleCardMouseMove}
+            onMouseLeave={handleCardMouseLeave}
+            className="w-full max-w-[480px] lg:max-w-none glass-panel rounded-2xl p-6 relative overflow-hidden hover:shadow-2xl border-brand-border/60"
             style={{
-              transform: `rotateX(${(mousePos.y - 300) * -0.015}deg) rotateY(${(mousePos.x - 700) * 0.015}deg)`,
-              transition: 'transform 0.1s ease-out'
+              transform: `rotateX(${cardRotation.x}deg) rotateY(${cardRotation.y}deg)`,
+              transition: 'transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)'
             }}
           >
             {/* Glowing background header */}
