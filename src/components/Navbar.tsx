@@ -101,7 +101,7 @@ export default function Navbar() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className={`hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-500 glass-nav ${
+          className={`hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-500 glass-nav ${
             scrolled ? 'scale-95 shadow-lg border-brand-border/80' : 'border-transparent'
           }`}
         >
@@ -137,7 +137,7 @@ export default function Navbar() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2.5 rounded-full border border-brand-border text-brand-text hover:bg-brand-surface/80 transition-colors"
+            className="lg:hidden p-2.5 rounded-full border border-brand-border text-brand-text hover:bg-brand-surface/80 transition-colors"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
@@ -153,7 +153,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="absolute top-20 left-6 right-6 p-6 rounded-2xl glass-panel border border-brand-border shadow-2xl flex flex-col gap-4 md:hidden"
+            className="absolute top-20 left-6 right-6 p-6 rounded-2xl glass-panel border border-brand-border shadow-2xl flex flex-col gap-4 lg:hidden"
           >
             <div className="flex flex-col gap-2">
               {navItems.map((item) => {

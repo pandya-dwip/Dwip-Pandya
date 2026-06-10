@@ -273,7 +273,7 @@ export default function Skills() {
           </div>
 
           {/* Interactive Navigation Tabs */}
-          <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl glass-nav border border-brand-border/60 self-start md:self-auto">
+          <div className="flex overflow-x-auto scrollbar-none flex-nowrap md:flex-wrap items-center gap-2 p-1.5 rounded-2xl glass-nav border border-brand-border/60 max-w-full self-start md:self-auto">
             {categories.map((cat) => {
               const isActive = activeTab === cat;
               return (
