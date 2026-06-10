@@ -19,7 +19,7 @@ const stats: Stat[] = [
 function Counter({ value, suffix, duration = 1.5 }: { value: number; suffix: string; duration?: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (!isInView) return;

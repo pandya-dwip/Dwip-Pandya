@@ -42,7 +42,7 @@ export default function Contact() {
       icon: LinkedInIcon,
       label: 'LinkedIn',
       value: 'linkedin.com/in/pandya-dwip',
-      href: 'https://linkedin.com/in/pandya-dwip',
+      href: 'https://www.linkedin.com/in/pandya-dwip/',
     },
   ];
 
@@ -55,7 +55,7 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) return;
-    
+
     setIsSubmitting(true);
     // Simulate API request
     setTimeout(() => {
@@ -67,8 +67,8 @@ export default function Contact() {
   };
 
   return (
-    <section 
-      id="contact" 
+    <section
+      id="contact"
       className="relative min-h-screen w-full flex items-center justify-center py-24 px-6 md:px-12 bg-brand-surface/25 overflow-hidden"
     >
       {/* Background ambient light */}
@@ -76,7 +76,7 @@ export default function Contact() {
       <div className="absolute w-[35vw] h-[35vw] rounded-full bg-brand-accent/5 glow-blob bottom-10 left-10 pointer-events-none" />
 
       <div className="max-w-7xl w-full mx-auto relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-left mb-16">
           <div className="flex items-center gap-2 mb-4">
@@ -90,7 +90,7 @@ export default function Contact() {
 
         {/* Contact Split Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
-          
+
           {/* Left Column: Direct Info Cards */}
           <div className="lg:col-span-5 flex flex-col justify-between gap-6">
             <div className="space-y-6">
@@ -116,7 +116,7 @@ export default function Contact() {
                       </div>
                       <div>
                         <h4 className="text-xs font-bold text-brand-text-muted uppercase tracking-wider">{detail.label}</h4>
-                        <a 
+                        <a
                           href={detail.href}
                           target={detail.href.startsWith('http') ? '_blank' : undefined}
                           rel="noopener noreferrer"
@@ -157,12 +157,12 @@ export default function Contact() {
 
           {/* Right Column: Glassmorphism Message Form */}
           <div className="lg:col-span-7">
-            <form 
+            <form
               onSubmit={handleSubmit}
               className="glass-panel border border-brand-border/60 rounded-2xl p-8 flex flex-col gap-6 relative overflow-hidden h-full justify-between"
             >
               <h3 className="text-xl font-extrabold text-brand-text tracking-tight text-left mb-2">Send a Message</h3>
-              
+
               <div className="space-y-5 flex-grow">
                 {/* Name field */}
                 <div className="relative">
@@ -175,7 +175,7 @@ export default function Contact() {
                     placeholder=" "
                     className="w-full px-4 py-3 bg-brand-bg/50 border border-brand-border rounded-xl text-brand-text placeholder-transparent focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20 transition-all duration-300 text-sm"
                   />
-                  <label 
+                  <label
                     htmlFor="name"
                     className="absolute left-4 top-3 text-sm text-brand-text-muted pointer-events-none transition-all duration-300 transform origin-left -translate-y-6 scale-75 bg-brand-surface px-1 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-brand-primary"
                   >
@@ -194,7 +194,7 @@ export default function Contact() {
                     placeholder=" "
                     className="w-full px-4 py-3 bg-brand-bg/50 border border-brand-border rounded-xl text-brand-text placeholder-transparent focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20 transition-all duration-300 text-sm"
                   />
-                  <label 
+                  <label
                     htmlFor="email"
                     className="absolute left-4 top-3 text-sm text-brand-text-muted pointer-events-none transition-all duration-300 transform origin-left -translate-y-6 scale-75 bg-brand-surface px-1 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-brand-primary"
                   >
@@ -212,7 +212,7 @@ export default function Contact() {
                     placeholder=" "
                     className="w-full px-4 py-3 bg-brand-bg/50 border border-brand-border rounded-xl text-brand-text placeholder-transparent focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20 transition-all duration-300 text-sm"
                   />
-                  <label 
+                  <label
                     htmlFor="subject"
                     className="absolute left-4 top-3 text-sm text-brand-text-muted pointer-events-none transition-all duration-300 transform origin-left -translate-y-6 scale-75 bg-brand-surface px-1 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-brand-primary"
                   >
@@ -231,7 +231,7 @@ export default function Contact() {
                     placeholder=" "
                     className="w-full px-4 py-3 bg-brand-bg/50 border border-brand-border rounded-xl text-brand-text placeholder-transparent focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/20 transition-all duration-300 text-sm resize-none"
                   />
-                  <label 
+                  <label
                     htmlFor="message"
                     className="absolute left-4 top-3 text-sm text-brand-text-muted pointer-events-none transition-all duration-300 transform origin-left -translate-y-6 scale-75 bg-brand-surface px-1 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-brand-primary"
                   >
@@ -244,11 +244,10 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting || isSubmitted}
-                className={`magnetic w-full py-4 rounded-xl font-bold text-sm tracking-wide border transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
-                  isSubmitted 
-                    ? 'bg-brand-success text-brand-bg border-brand-success' 
-                    : 'bg-brand-text text-brand-bg hover:bg-brand-surface hover:text-brand-text border-brand-text'
-                }`}
+                className={`magnetic w-full py-4 rounded-xl font-bold text-sm tracking-wide border transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${isSubmitted
+                  ? 'bg-brand-success text-brand-bg border-brand-success'
+                  : 'bg-brand-text text-brand-bg hover:bg-brand-surface hover:text-brand-text border-brand-text'
+                  }`}
               >
                 {isSubmitting ? (
                   <>

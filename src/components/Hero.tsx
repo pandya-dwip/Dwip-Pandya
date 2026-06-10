@@ -263,7 +263,7 @@ export default function Hero() {
           <div 
             onMouseMove={handleCardMouseMove}
             onMouseLeave={handleCardMouseLeave}
-            className="w-full max-w-[480px] lg:max-w-none glass-panel rounded-2xl p-6 relative overflow-hidden hover:shadow-2xl border-brand-border/60"
+            className="w-full max-w-[480px] lg:max-w-none glass-panel rounded-2xl p-4 sm:p-6 relative overflow-hidden hover:shadow-2xl border-brand-border/60"
             style={{
               transform: `rotateX(${cardRotation.x}deg) rotateY(${cardRotation.y}deg)`,
               transition: 'transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)'
@@ -275,30 +275,30 @@ export default function Hero() {
             {/* Header controls */}
             <div className="flex justify-between items-center mb-6">
               <div className="flex items-center gap-1.5">
-                <span className="w-3 h-3 rounded-full bg-red-400/80" />
-                <span className="w-3 h-3 rounded-full bg-yellow-400/80" />
-                <span className="w-3 h-3 rounded-full bg-green-400/80" />
-                <span className="text-xs font-mono opacity-50 ml-2">playwright.config.ts</span>
+                <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-400/80" />
+                <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-400/80" />
+                <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-400/80" />
+                <span className="text-[10px] sm:text-xs font-mono opacity-50 ml-1.5 sm:ml-2">playwright.config.ts</span>
               </div>
-              <div className="flex items-center gap-2 px-2.5 py-1 rounded bg-brand-primary/10 text-brand-primary text-xs font-mono font-bold">
-                <Cpu size={12} className="animate-spin-slow" />
+              <div className="flex items-center gap-1.5 px-2 py-0.5 sm:py-1 rounded bg-brand-primary/10 text-brand-primary text-[10px] sm:text-xs font-mono font-bold">
+                <Cpu size={10} className="animate-spin-slow" />
                 <span>SDET INFRA</span>
               </div>
             </div>
 
             {/* Simulated Live Stat Counters */}
-            <div className="grid grid-cols-3 gap-3 mb-6">
-              <div className="bg-brand-bg/50 border border-brand-border/60 rounded-xl p-3 flex flex-col items-center">
-                <span className="text-xs font-semibold text-brand-text-muted uppercase tracking-wider mb-1">Pass Rate</span>
-                <span className="text-xl font-bold font-mono text-brand-success">{successRate}%</span>
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-6">
+              <div className="bg-brand-bg/50 border border-brand-border/60 rounded-xl p-2 sm:p-3 flex flex-col items-center justify-center min-w-0">
+                <span className="text-[9px] sm:text-xs font-semibold text-brand-text-muted uppercase tracking-wider mb-1 text-center truncate w-full">Pass Rate</span>
+                <span className="text-sm sm:text-base md:text-lg font-bold font-mono text-brand-success">{successRate}%</span>
               </div>
-              <div className="bg-brand-bg/50 border border-brand-border/60 rounded-xl p-3 flex flex-col items-center">
-                <span className="text-xs font-semibold text-brand-text-muted uppercase tracking-wider mb-1">Workers</span>
-                <span className="text-xl font-bold font-mono text-brand-primary">4 / Parallel</span>
+              <div className="bg-brand-bg/50 border border-brand-border/60 rounded-xl p-2 sm:p-3 flex flex-col items-center justify-center min-w-0">
+                <span className="text-[9px] sm:text-xs font-semibold text-brand-text-muted uppercase tracking-wider mb-1 text-center truncate w-full">Workers</span>
+                <span className="text-sm sm:text-base md:text-lg font-bold font-mono text-brand-primary text-center truncate w-full">4 / Parallel</span>
               </div>
-              <div className="bg-brand-bg/50 border border-brand-border/60 rounded-xl p-3 flex flex-col items-center">
-                <span className="text-xs font-semibold text-brand-text-muted uppercase tracking-wider mb-1">Status</span>
-                <span className={`text-sm font-extrabold font-mono uppercase mt-1 px-2 py-0.5 rounded ${
+              <div className="bg-brand-bg/50 border border-brand-border/60 rounded-xl p-2 sm:p-3 flex flex-col items-center justify-center min-w-0">
+                <span className="text-[9px] sm:text-xs font-semibold text-brand-text-muted uppercase tracking-wider mb-1 text-center truncate w-full">Status</span>
+                <span className={`text-[9px] sm:text-xs font-extrabold font-mono uppercase mt-1 px-1.5 py-0.5 rounded text-center truncate w-full ${
                   testStatus === 'completed' 
                     ? 'bg-brand-success/10 text-brand-success' 
                     : 'bg-brand-warning/10 text-brand-warning animate-pulse'
@@ -309,7 +309,7 @@ export default function Hero() {
             </div>
 
             {/* Custom Terminal Panel */}
-            <div className="bg-slate-950 text-slate-100 rounded-xl p-4 font-mono text-xs overflow-hidden shadow-inner h-[220px] flex flex-col justify-between border border-slate-800">
+            <div className="bg-slate-950 text-slate-100 rounded-xl p-3 sm:p-4 font-mono text-[10px] sm:text-xs overflow-hidden shadow-inner h-[200px] sm:h-[220px] flex flex-col justify-between border border-slate-800">
               <div className="overflow-y-auto space-y-2 flex-grow scrollbar-none">
                 {terminalLogs.map((log, idx) => (
                   <div 
