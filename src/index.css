@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: 250 250 250;
+  --color-surface: 255 255 255;
+  --color-text: 15 23 42;
+  --color-text-muted: 71 85 105;
+  --color-border: 226 232 240;
+  
+  --color-brand-primary: 37 99 235;
+  --color-brand-secondary: 13 148 136;
+  --color-brand-accent: 124 58 237;
+  --color-brand-success: 22 163 74;
+  --color-brand-warning: 217 119 6;
+  --color-brand-danger: 220 38 38;
+
+  color-scheme: light dark;
+}
+
+:root.dark {
+  --color-bg: 8 9 12;
+  --color-surface: 16 18 23;
+  --color-text: 241 245 249;
+  --color-text-muted: 148 163 184;
+  --color-border: 30 41 59;
+  
+  --color-brand-primary: 59 130 246;
+  --color-brand-secondary: 20 184 166;
+  --color-brand-accent: 139 92 246;
+  --color-brand-success: 34 197 94;
+  --color-brand-warning: 245 158 11;
+  --color-brand-danger: 239 68 68;
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--color-border)) rgb(var(--color-bg));
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  background-color: rgb(var(--color-bg));
+  color: rgb(var(--color-text));
+  overflow-x: hidden;
+  scroll-behavior: auto; /* Handled by Lenis */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-bg));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-border));
+  border-radius: 5px;
+  border: 2px solid rgb(var(--color-bg));
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-brand-primary) / 0.5);
+}
+
+/* Lenis Custom Rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Grain Noise Overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  content: "";
+  opacity: 0.025;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+:root.dark .noise-overlay {
+  opacity: 0.045;
+}
+
+/* Glowing Aura Background Grid */
+.grid-bg {
+  background-size: 50px 50px;
+  background-image: linear-gradient(to right, rgb(var(--color-border) / 0.3) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgb(var(--color-border) / 0.3) 1px, transparent 1px);
+}
+
+/* Ambient glow blobs */
+.glow-blob {
+  filter: blur(120px);
+  mix-blend-mode: plus-lighter;
+}
+:root:not(.dark) .glow-blob {
+  mix-blend-mode: multiply;
+  opacity: 0.15;
+}
+
+/* Custom styles for animations & terminal */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminal-cursor {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+.glass-panel {
+  background: rgba(var(--color-surface), 0.6);
+  backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(var(--color-border), 0.5);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.04);
+}
+
+:root.dark .glass-panel {
+  background: rgba(var(--color-surface), 0.4);
+  border: 1px solid rgba(var(--color-border), 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.glass-nav {
+  background: rgba(var(--color-surface), 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(var(--color-border), 0.6);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+:root.dark .glass-nav {
+  background: rgba(var(--color-surface), 0.5);
+  border: 1px solid rgba(var(--color-border), 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+}
