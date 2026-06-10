@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Mail } from 'lucide-react';
+import { GitHubIcon, LinkedInIcon } from './BrandIcons';
 
 const navItems = [
   { name: 'Home', href: '#home' },
@@ -145,36 +146,104 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Navigation Panel */}
+      {/* Mobile/Tablet Navigation Sidebar Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="absolute top-20 left-6 right-6 p-6 rounded-2xl glass-panel border border-brand-border shadow-2xl flex flex-col gap-4 lg:hidden"
-          >
-            <div className="flex flex-col gap-2">
-              {navItems.map((item) => {
-                const isActive = activeSection === item.href.substring(1);
-                return (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className={`px-4 py-3 rounded-xl text-base font-semibold tracking-wide transition-colors duration-300 ${
-                      isActive 
-                        ? 'bg-brand-primary/10 text-brand-primary' 
-                        : 'text-brand-text hover:bg-brand-surface'
-                    }`}
+          <>
+            {/* Backdrop Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-[100] lg:hidden"
+            />
+
+            {/* Sidebar Drawer */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 26, stiffness: 220 }}
+              className="fixed top-0 right-0 h-screen w-[280px] sm:w-[320px] bg-brand-surface/95 border-l border-brand-border/40 shadow-2xl z-[101] lg:hidden flex flex-col p-6 overflow-y-auto"
+            >
+              {/* Drawer Header */}
+              <div className="flex items-center justify-between pb-6 border-b border-brand-border/40">
+                <div className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-brand-primary animate-pulse" />
+                  <span className="text-xs font-mono font-bold tracking-widest text-brand-text-muted uppercase">MENU</span>
+                </div>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2 rounded-full border border-brand-border text-brand-text hover:bg-brand-surface/80 transition-colors cursor-pointer"
+                  aria-label="Close menu"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Navigation Items */}
+              <nav className="flex flex-col gap-2 py-8">
+                {navItems.map((item, index) => {
+                  const isActive = activeSection === item.href.substring(1);
+                  return (
+                    <motion.a
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.05 + index * 0.05, duration: 0.4 }}
+                      key={item.name}
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      className={`group flex items-baseline gap-4 py-3 px-4 rounded-xl transition-all duration-300 ${
+                        isActive 
+                          ? 'bg-brand-primary/10 text-brand-primary font-bold' 
+                          : 'text-brand-text-muted hover:text-brand-text hover:bg-brand-surface/50'
+                      }`}
+                    >
+                      <span className="text-xs font-mono opacity-50">0{index + 1}</span>
+                      <span className="text-lg font-semibold tracking-wide">{item.name}</span>
+                    </motion.a>
+                  );
+                })}
+              </nav>
+
+              {/* Drawer Footer */}
+              <div className="mt-auto pt-6 border-t border-brand-border/40 flex flex-col gap-4">
+                <span className="text-[10px] font-mono text-brand-text-muted opacity-50 uppercase tracking-widest">Connect with me</span>
+                <div className="flex items-center gap-4 text-brand-text-muted">
+                  <a 
+                    href="https://github.com/pandya-dwip" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="p-2.5 rounded-full border border-brand-border hover:text-brand-primary hover:border-brand-primary transition-all duration-300 cursor-pointer"
+                    aria-label="GitHub Profile"
                   >
-                    {item.name}
+                    <GitHubIcon size={18} />
                   </a>
-                );
-              })}
-            </div>
-          </motion.div>
+                  <a 
+                    href="https://linkedin.com/in/pandya-dwip" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="p-2.5 rounded-full border border-brand-border hover:text-brand-primary hover:border-brand-primary transition-all duration-300 cursor-pointer"
+                    aria-label="LinkedIn Profile"
+                  >
+                    <LinkedInIcon size={18} />
+                  </a>
+                  <a 
+                    href="mailto:aydnapdwip@gmail.com" 
+                    className="p-2.5 rounded-full border border-brand-border hover:text-brand-primary hover:border-brand-primary transition-all duration-300 cursor-pointer"
+                    aria-label="Send Email"
+                  >
+                    <Mail size={18} />
+                  </a>
+                </div>
+                <div className="text-[10px] font-mono text-brand-text-muted opacity-40 uppercase tracking-wider">
+                  Quality Engineering & SDET
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>
