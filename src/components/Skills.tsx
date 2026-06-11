@@ -20,14 +20,11 @@ const skillsData: Skill[] = [
     desc: 'Functional and manual QA validation processes.',
     logs: [
       'Manual Testing',
-      'Functional Testing',
-      'Regression Testing',
-      'Smoke Testing',
+      'Functional Positive & Negative Testing',
+      'Smoke & Regression Testing',
       'Sanity Testing',
       'Exploratory Testing',
-      'Boundary & Negative Testing',
       'End-to-End (E2E) Testing',
-      'Integration Testing'
     ]
   },
   {
@@ -142,6 +139,14 @@ const skillsData: Skill[] = [
     ]
   },
   {
+    name: 'React',
+    category: 'Frameworks & Backend',
+    logoSlug: 'react',
+    iconName: 'development',
+    desc: 'Component-based UI library for modern web applications.',
+    logs: []
+  },
+  {
     name: 'Test Management & Reporting',
     category: 'Frameworks & Backend',
     iconName: 'reporting',
@@ -220,6 +225,14 @@ const skillsData: Skill[] = [
       'Bitbucket PR reviews',
       'Diff Inspection screens'
     ]
+  },
+  {
+    name: 'Vite',
+    category: 'Tools & Platforms',
+    logoSlug: 'vite',
+    iconName: 'tools',
+    desc: 'Next-generation frontend tooling and fast dev servers.',
+    logs: []
   }
 ];
 
@@ -250,8 +263,8 @@ export default function Skills() {
   };
 
   return (
-    <section 
-      id="skills" 
+    <section
+      id="skills"
       className="relative min-h-screen w-full flex items-center justify-center py-24 px-6 md:px-12 bg-brand-surface/25 overflow-hidden"
     >
       {/* Background blobs */}
@@ -259,7 +272,7 @@ export default function Skills() {
       <div className="absolute w-[40vw] h-[40vw] rounded-full bg-brand-accent/5 glow-blob bottom-12 left-12 pointer-events-none" />
 
       <div className="max-w-7xl w-full mx-auto relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-left mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
@@ -280,9 +293,8 @@ export default function Skills() {
                 <button
                   key={cat}
                   onClick={() => setActiveTab(cat)}
-                  className={`relative px-4 py-2 text-xs font-bold tracking-wide transition-colors duration-300 rounded-xl select-none cursor-pointer ${
-                    isActive ? 'text-brand-text' : 'text-brand-text-muted hover:text-brand-text'
-                  }`}
+                  className={`relative px-4 py-2 text-xs font-bold tracking-wide transition-colors duration-300 rounded-xl select-none cursor-pointer ${isActive ? 'text-brand-text' : 'text-brand-text-muted hover:text-brand-text'
+                    }`}
                 >
                   {isActive && (
                     <motion.span
@@ -318,23 +330,23 @@ export default function Skills() {
                     {/* Brand Logo Container */}
                     <div className="p-3 rounded-xl bg-brand-surface border border-brand-border/70 group-hover:scale-105 transition-transform duration-300 shrink-0 shadow-sm flex items-center justify-center w-[52px] h-[52px]">
                       {skill.logoSlug === 'playwright' ? (
-                        <img 
-                          src="https://playwright.dev/img/playwright-logo.svg" 
-                          alt="Playwright Icon" 
+                        <img
+                          src="https://playwright.dev/img/playwright-logo.svg"
+                          alt="Playwright Icon"
                           className="w-7 h-7 object-contain"
                           loading="lazy"
                         />
                       ) : skill.logoSlug === 'flutter' ? (
-                        <img 
-                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" 
-                          alt="Flutter Icon" 
+                        <img
+                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg"
+                          alt="Flutter Icon"
                           className="w-7 h-7 object-contain"
                           loading="lazy"
                         />
                       ) : skill.logoSlug ? (
-                        <img 
-                          src={`https://cdn.simpleicons.org/${skill.logoSlug}`} 
-                          alt={`${skill.name} Icon`} 
+                        <img
+                          src={`https://cdn.simpleicons.org/${skill.logoSlug}`}
+                          alt={`${skill.name} Icon`}
                           className="w-7 h-7 object-contain"
                           loading="lazy"
                         />
@@ -358,8 +370,8 @@ export default function Skills() {
                   {skill.category === 'Testing & Automation' && skill.logs && skill.logs.length > 0 && (
                     <div className="w-full flex-grow flex flex-col gap-1.5 bg-slate-950/40 dark:bg-slate-950/80 p-3.5 rounded-xl border border-brand-border/40 max-h-[220px] overflow-y-auto scrollbar-thin">
                       {skill.logs.map((log, lIdx) => (
-                        <div 
-                          key={lIdx} 
+                        <div
+                          key={lIdx}
                           className="font-mono text-[11px] sm:text-xs text-slate-200 dark:text-slate-200 py-1 border-b border-brand-border/10 last:border-b-0 flex items-start gap-1.5 leading-normal"
                         >
                           <span className="text-brand-primary font-bold select-none mt-0.5">&gt;</span>

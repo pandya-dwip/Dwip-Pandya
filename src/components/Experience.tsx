@@ -15,7 +15,7 @@ const experiences: ExperienceEntry[] = [
   {
     company: 'CIMCON Software India Private Limited (CSIPL)',
     role: 'Software Quality Assurance Engineer',
-    period: 'Apr 2026 – Present (3 months)',
+    period: 'Apr 2026 – Present',
     location: 'Ahmedabad, Gujarat',
     skillsDeveloped: [
       'Architecting Playwright (TS/JS) automation wrappers for E2E web application testing.',
@@ -23,53 +23,53 @@ const experiences: ExperienceEntry[] = [
       'Configuring automated API testing beds in Postman and mock validation pipelines.',
       'Developing custom test execution & reporting portals using Vite and ExcelJS to eliminate manual reporting workflows.'
     ],
-    tech: ['Playwright', 'TypeScript', 'Flutter', 'Postman', 'Vite', 'ExcelJS', 'GetIt']
+    tech: ['TypeScript Playwright Automation', 'Flutter Automation Testing', 'Python Playwright Automation', 'ExcelJS', 'Vite', 'JIRA', 'Bitbucket']
   },
   {
     company: 'Infopercept Consulting Pvt Ltd',
     role: 'QA & Testing Engineer',
-    period: 'Nov 2025 – Apr 2026 (6 months)',
+    period: 'Nov 2025 – Apr 2026',
     location: 'Ahmedabad, Gujarat',
     skillsDeveloped: [
       'Designing test plans for functional, edge-case, and boundary regressions on cyber security panels.',
       'Managing full E2E defect lifecycles, logging, tracking, and validating patches.',
       'Collaborating on GitLab pipelines, JIRA, ClickUp, and Trello boards for agile team tracking.'
     ],
-    tech: ['Manual Testing', 'Postman', 'ClickUp', 'GitLab', 'Trello', 'JIRA', 'MySQL']
+    tech: ['Manual Testing', 'JavaScript Playwright Automation', 'Playwright POM', 'Postman', 'GitLab', 'Trello']
   },
   {
     company: 'Viaansh Infotech LLP',
-    role: 'Back End Developer',
-    period: 'Apr 2025 – Jul 2025 (4 months)',
+    role: 'Back End Developer - Intern',
+    period: 'Apr 2025 – Jul 2025',
     location: 'Ahmedabad, Gujarat',
     skillsDeveloped: [
       'Engineering MVC RESTful API frameworks and backend routes in Laravel and PHP.',
       'Optimizing MySQL database schemas, indexes, and queries to decrease query load times by ~30%.',
       'Developing multi-tenant backend architectures with detailed diagnostics and system logs.'
     ],
-    tech: ['Laravel', 'PHP', 'MySQL', 'RESTful APIs', 'Postman']
+    tech: ['Laravel', 'PHP', 'MySQL', 'RESTful APIs', 'Postman', 'CMS Development']
   },
   {
     company: 'Akash TechnoLabs',
     role: 'Laravel & PHP Developer Intern',
-    period: 'Oct 2024 – Apr 2026 (7 months)', // Note: user said Akash TechnoLabs - 7 months: Laravel Developer intern Jan 2025 - Apr 2025, PHP Developer intern Oct 2024 - Jan 2025
+    period: 'Oct 2024 – Apr 2026',
     location: 'Ahmedabad, Gujarat',
     skillsDeveloped: [
       'Designing databases and coding custom plugins with Laravel backend modules.',
       'Developing MVC architectures and PHP web configurations for administrative tools.'
     ],
-    tech: ['Laravel', 'PHP', 'MySQL', 'WordPress']
+    tech: ['Laravel', 'PHP', 'MySQL', 'Postman']
   },
   {
     company: 'Viaansh Infotech LLP',
     role: 'WordPress Developer Intern',
-    period: 'Mar 2024 – Jul 2024 (5 months)',
+    period: 'Mar 2024 – Jul 2024',
     location: 'Ahmedabad, Gujarat',
     skillsDeveloped: [
       'Customizing WordPress themes, templates, and backend admin hooks.',
       'Programming clean PHP templates, styles, and custom widgets.'
     ],
-    tech: ['WordPress', 'PHP', 'HTML5', 'CSS3', 'JavaScript']
+    tech: ['WordPress', 'PHP', 'Theme Development', 'Custom Plugin Development', 'ClickUp', 'Custom Widget Development']
   }
 ];
 
@@ -95,8 +95,8 @@ export default function Experience() {
   };
 
   return (
-    <section 
-      id="experience" 
+    <section
+      id="experience"
       ref={containerRef}
       className="relative min-h-screen w-full flex items-center justify-center py-24 px-6 md:px-12 overflow-hidden"
     >
@@ -104,7 +104,7 @@ export default function Experience() {
       <div className="absolute w-[40vw] h-[40vw] rounded-full bg-brand-accent/5 glow-blob -bottom-20 left-1/4 pointer-events-none" />
 
       <div className="max-w-4xl w-full mx-auto relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-left mb-16">
           <div className="flex items-center gap-2 mb-4">
@@ -117,7 +117,7 @@ export default function Experience() {
         </div>
 
         {/* Timeline Container */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -126,7 +126,7 @@ export default function Experience() {
         >
           {experiences.map((exp, index) => (
             <div key={index} className="relative group">
-              
+
               {/* Timeline Bullet Node with Glow */}
               <div className="absolute -left-[31px] md:-left-[47px] top-1.5 flex items-center justify-center z-20">
                 <div className="w-4 h-4 rounded-full bg-brand-bg border-[3px] border-brand-border group-hover:border-brand-primary group-hover:scale-125 transition-all duration-300 relative shadow-sm">
@@ -156,7 +156,7 @@ export default function Experience() {
                       <span className="opacity-50 font-normal">| {exp.location}</span>
                     </h4>
                   </div>
-                  
+
                   {/* Period Badge */}
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-brand-border bg-brand-bg/60 text-[10px] font-mono font-bold text-brand-text-muted shrink-0 self-start sm:self-auto">
                     <Calendar size={10} />
@@ -180,8 +180,8 @@ export default function Experience() {
                 {/* Tech Pills */}
                 <div className="flex flex-wrap gap-1.5 pt-3 border-t border-brand-border/40">
                   {exp.tech.map((t, tIdx) => (
-                    <span 
-                      key={tIdx} 
+                    <span
+                      key={tIdx}
                       className="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-bg border border-brand-border/70 text-brand-text font-semibold hover:border-brand-primary/50 transition-colors"
                     >
                       {t}
