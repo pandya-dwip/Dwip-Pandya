@@ -25,11 +25,11 @@ export default function Hero() {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-    
+
     // Normalize and limit rotation to max 10 degrees
     const rotateX = -(y / (rect.height / 2)) * 10;
     const rotateY = (x / (rect.width / 2)) * 10;
-    
+
     setCardRotation({ x: rotateX, y: rotateY });
   };
 
@@ -131,21 +131,21 @@ export default function Hero() {
   };
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       ref={containerRef}
       className="relative min-h-screen w-full flex items-center justify-center pt-24 pb-16 overflow-hidden px-6 md:px-12 grid-bg"
     >
       {/* Background Glowing Ambient Orbs */}
-      <div 
-        className="absolute w-[40vw] h-[40vw] rounded-full bg-blue-500/10 dark:bg-blue-600/10 glow-blob -top-10 -left-10 pointer-events-none" 
+      <div
+        className="absolute w-[40vw] h-[40vw] rounded-full bg-blue-500/10 dark:bg-blue-600/10 glow-blob -top-10 -left-10 pointer-events-none"
         style={{
           transform: `translate(${(mousePos.x - 500) * 0.03}px, ${(mousePos.y - 300) * 0.03}px)`,
           transition: 'transform 0.2s ease-out'
         }}
       />
-      <div 
-        className="absolute w-[45vw] h-[45vw] rounded-full bg-violet-500/10 dark:bg-violet-600/10 glow-blob -bottom-20 -right-20 pointer-events-none" 
+      <div
+        className="absolute w-[45vw] h-[45vw] rounded-full bg-violet-500/10 dark:bg-violet-600/10 glow-blob -bottom-20 -right-20 pointer-events-none"
         style={{
           transform: `translate(${(mousePos.x - 500) * -0.02}px, ${(mousePos.y - 300) * -0.02}px)`,
           transition: 'transform 0.2s ease-out'
@@ -153,7 +153,7 @@ export default function Hero() {
       />
 
       {/* Dynamic Cursor Light Source */}
-      <div 
+      <div
         className="absolute w-[400px] h-[400px] rounded-full bg-brand-primary/5 dark:bg-brand-primary/8 blur-[100px] pointer-events-none z-[1] hidden md:block"
         style={{
           left: mousePos.x - 200,
@@ -166,7 +166,7 @@ export default function Hero() {
         {/* Left Side: Typography and Info */}
         <div className="lg:col-span-7 flex flex-col items-start justify-center text-left">
           {/* Tag */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -177,7 +177,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Name */}
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
@@ -203,17 +203,17 @@ export default function Hero() {
           </div>
 
           {/* Intro Description */}
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="text-lg sm:text-xl text-brand-text-muted max-w-xl mb-10 leading-relaxed font-normal"
           >
-            SDET focused on scalable automation systems, testing infrastructure, and end-to-end quality engineering.
+            I specialize in developing automation solutions for web, mobile, and API testing, with experience in Playwright, Flutter integration testing, and custom QA reporting dashboards focused on improving software quality and testing efficiency.
           </motion.p>
 
           {/* Call to action buttons */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
@@ -249,7 +249,7 @@ export default function Hero() {
         </div>
 
         {/* Right Side: Interactive Automation Visualizer */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -260,7 +260,7 @@ export default function Hero() {
           }}
         >
           {/* Parallax Card Container */}
-          <div 
+          <div
             onMouseMove={handleCardMouseMove}
             onMouseLeave={handleCardMouseLeave}
             className="w-full max-w-[480px] lg:max-w-none glass-panel rounded-2xl p-4 sm:p-6 relative overflow-hidden hover:shadow-2xl border-brand-border/60"
@@ -271,7 +271,7 @@ export default function Hero() {
           >
             {/* Glowing background header */}
             <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-brand-primary via-brand-accent to-brand-secondary" />
-            
+
             {/* Header controls */}
             <div className="flex justify-between items-center mb-6">
               <div className="flex items-center gap-1.5">
@@ -298,11 +298,10 @@ export default function Hero() {
               </div>
               <div className="bg-brand-bg/50 border border-brand-border/60 rounded-xl p-2 sm:p-3 flex flex-col items-center justify-center min-w-0">
                 <span className="text-[9px] sm:text-xs font-semibold text-brand-text-muted uppercase tracking-wider mb-1 text-center truncate w-full">Status</span>
-                <span className={`text-[9px] sm:text-xs font-extrabold font-mono uppercase mt-1 px-1.5 py-0.5 rounded text-center truncate w-full ${
-                  testStatus === 'completed' 
-                    ? 'bg-brand-success/10 text-brand-success' 
+                <span className={`text-[9px] sm:text-xs font-extrabold font-mono uppercase mt-1 px-1.5 py-0.5 rounded text-center truncate w-full ${testStatus === 'completed'
+                    ? 'bg-brand-success/10 text-brand-success'
                     : 'bg-brand-warning/10 text-brand-warning animate-pulse'
-                }`}>
+                  }`}>
                   {testStatus}
                 </span>
               </div>
@@ -312,17 +311,16 @@ export default function Hero() {
             <div className="bg-slate-950 text-slate-100 rounded-xl p-3 sm:p-4 font-mono text-[10px] sm:text-xs overflow-hidden shadow-inner h-[200px] sm:h-[220px] flex flex-col justify-between border border-slate-800">
               <div className="overflow-y-auto space-y-2 flex-grow scrollbar-none">
                 {terminalLogs.map((log, idx) => (
-                  <div 
-                    key={idx} 
-                    className={`${
-                      log.includes('✓') 
-                        ? 'text-green-400 font-semibold' 
-                        : log.includes('$') 
-                        ? 'text-slate-400' 
-                        : log.includes('passed') 
-                        ? 'text-green-400 font-bold' 
-                        : 'text-slate-300'
-                    }`}
+                  <div
+                    key={idx}
+                    className={`${log.includes('✓')
+                        ? 'text-green-400 font-semibold'
+                        : log.includes('$')
+                          ? 'text-slate-400'
+                          : log.includes('passed')
+                            ? 'text-green-400 font-bold'
+                            : 'text-slate-300'
+                      }`}
                   >
                     {log}
                   </div>
@@ -344,7 +342,7 @@ export default function Hero() {
                 <span className="font-mono text-brand-text-muted">{completedTests.length} / {testCases.length} Done</span>
               </div>
               <div className="w-full bg-brand-border/30 h-1.5 rounded-full overflow-hidden">
-                <motion.div 
+                <motion.div
                   className="bg-gradient-to-r from-brand-primary to-brand-accent h-full"
                   initial={{ width: 0 }}
                   animate={{ width: `${(completedTests.length / testCases.length) * 100}%` }}
@@ -357,13 +355,12 @@ export default function Hero() {
                 {testCases.map((tc, index) => {
                   const isDone = completedTests.includes(tc.name);
                   return (
-                    <span 
-                      key={index} 
-                      className={`text-[10px] px-2.5 py-1 rounded-full border transition-all duration-300 flex items-center gap-1 ${
-                        isDone 
-                          ? 'bg-brand-success/10 border-brand-success/30 text-brand-success font-semibold' 
+                    <span
+                      key={index}
+                      className={`text-[10px] px-2.5 py-1 rounded-full border transition-all duration-300 flex items-center gap-1 ${isDone
+                          ? 'bg-brand-success/10 border-brand-success/30 text-brand-success font-semibold'
                           : 'bg-brand-surface/40 border-brand-border text-brand-text-muted opacity-60'
-                      }`}
+                        }`}
                     >
                       {isDone && <CheckCircle2 size={9} />}
                       {tc.name.split(':')[0]}

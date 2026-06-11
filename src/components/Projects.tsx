@@ -17,12 +17,12 @@ const projects: Project[] = [
   {
     id: 1,
     title: 'Custom Test Execution & Reporting Platform',
-    category: 'Internal Tool — Vite, Excel/Google Sheets',
-    description: 'Built a web-based test management platform for structured test case tracking, real-time execution monitoring, and multi-format report generation.',
+    category: 'Internal Tool — Vite, ExcelJS, Chart.js, Google Sheets API',
+    description: 'Designed and developed a custom internal test execution and reporting platform to streamline QA reporting processes. The solution eliminated manual spreadsheet-based reporting efforts and introduced centralized historical test run tracking and comparison capabilities.',
     bullets: [
-      'Designed a real-time dashboard displaying execution counts, pass/fail rate metrics, severity charts, and module-wise analytics.',
-      'Built an edit interface for live status updates and maintained execution history logs for historical comparison.',
-      'Developed automated Excel and Google Sheets export producing structured multi-sheet reports.'
+      'Provided the QA team with a centralized live dashboard displaying test execution results, pass rates, failure trends, and module-wise severity analysis.',
+      'Implemented automated Excel and Google Sheets export functionality, generating structured multi-sheet reports with a single click.',
+      'Configured execution log tracking for 80+ test cases, enabling efficient comparison and analysis across multiple test cycles.'
     ],
     tech: ['Vite', 'React', 'ExcelJS', 'Tailwind CSS'],
     github: 'https://github.com/pandya-dwip/qa-report-generator',

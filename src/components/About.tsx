@@ -27,7 +27,7 @@ function Counter({ value, suffix, duration = 1.5 }: { value: number; suffix: str
     let start = 0;
     const end = value;
     const isFloat = !Number.isInteger(value);
-    
+
     // Total steps based on 60fps
     const totalFrames = Math.round(duration * 60);
     let frame = 0;
@@ -82,8 +82,8 @@ export default function About() {
   };
 
   return (
-    <section 
-      id="about" 
+    <section
+      id="about"
       ref={containerRef}
       className="relative min-h-screen w-full flex items-center justify-center py-24 px-6 md:px-12 bg-brand-surface/25 overflow-hidden"
     >
@@ -105,7 +105,7 @@ export default function About() {
               <span className="text-xs font-mono font-bold tracking-widest text-brand-primary uppercase">About & Summary</span>
             </motion.div>
 
-            <motion.h2 
+            <motion.h2
               variants={itemVariants}
               className="text-4xl sm:text-5xl font-black tracking-tight text-brand-text mb-8 leading-[1.15]"
             >
@@ -115,11 +115,28 @@ export default function About() {
 
             <motion.div variants={itemVariants} className="space-y-6 text-brand-text-muted text-base sm:text-lg leading-relaxed">
               <p>
-                I am an **SDET / QA Automation Engineer** with a backend development background in Laravel and PHP. I specialize in building production-grade, POM-based web and mobile automation frameworks in Playwright and Flutter.
+                With 7 months of QA engineering experience, I design scalable test automation frameworks and custom internal tools that eliminate manual bottlenecks and accelerate software delivery.
               </p>
-              <p>
-                Leveraging API validation and continuous integration flows, my core focus is to eliminate manual pipelines, boost runtime performance, and ensure end-to-end engineering reliability.
-              </p>
+              <ul className="space-y-3.5 text-sm sm:text-base text-left">
+                <li className="flex items-start gap-3">
+                  <span className="text-brand-primary select-none mt-1.5">▪</span>
+                  <span>
+                    <strong>Full-Stack Automation:</strong> Developing end-to-end test suites covering web (Playwright JS/TS), mobile (Flutter integration_test for Android & iOS), and APIs (Postman).
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-brand-primary select-none mt-1.5">▪</span>
+                  <span>
+                    <strong>Custom QA Tooling:</strong> Built a custom internal test reporting platform that centralized run history and eliminated weekly manual reporting overhead.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-brand-primary select-none mt-1.5">▪</span>
+                  <span>
+                    <strong>Backend Debugging Context:</strong> Leverage background in Laravel and PHP backend development to trace and debug defects early in APIs and databases.
+                  </span>
+                </li>
+              </ul>
             </motion.div>
           </div>
 
