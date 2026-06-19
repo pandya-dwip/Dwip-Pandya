@@ -15,6 +15,7 @@ export default function Contact() {
   const [formState, setFormState] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   const contactDetails: ContactInfo[] = [
@@ -52,18 +53,40 @@ export default function Contact() {
     setTimeout(() => setCopiedIndex(null), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) return;
 
     setIsSubmitting(true);
-    // Simulate API request
-    setTimeout(() => {
+    setSubmitError(null);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/aydnapdwip@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          subject: formState.subject || `New message from ${formState.name} on Portfolio`,
+          message: formState.message
+        })
+      });
+
+      if (response.ok) {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        setFormState({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => setIsSubmitted(false), 4000);
+      } else {
+        throw new Error('Failed to transmit message. Please try again.');
+      }
+    } catch (err: any) {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormState({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setIsSubmitted(false), 4000);
-    }, 2000);
+      setSubmitError(err.message || 'An unexpected error occurred. Please try again.');
+    }
   };
 
   return (
@@ -150,7 +173,7 @@ export default function Contact() {
               </span>
               <div>
                 <span className="text-xs font-bold text-brand-text">Availability Status</span>
-                <p className="text-[11px] text-brand-text-muted">Open to senior QA Automation, SDET, and backend engineering projects.</p>
+                <p className="text-[11px] text-brand-text-muted">Open to senior QA Automation & SDET roles.</p>
               </div>
             </div>
           </div>
@@ -238,6 +261,16 @@ export default function Contact() {
                     Your Message
                   </label>
                 </div>
+
+                {submitError && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-brand-danger text-xs font-mono text-left bg-brand-danger/10 border border-brand-danger/25 p-3 rounded-lg"
+                  >
+                    ✕ {submitError}
+                  </motion.div>
+                )}
               </div>
 
               {/* Submit Button */}
