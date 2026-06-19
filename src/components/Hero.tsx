@@ -299,8 +299,8 @@ export default function Hero() {
               <div className="bg-brand-bg/50 border border-brand-border/60 rounded-xl p-2 sm:p-3 flex flex-col items-center justify-center min-w-0">
                 <span className="text-[9px] sm:text-xs font-semibold text-brand-text-muted uppercase tracking-wider mb-1 text-center truncate w-full">Status</span>
                 <span className={`text-[9px] sm:text-xs font-extrabold font-mono uppercase mt-1 px-1.5 py-0.5 rounded text-center truncate w-full ${testStatus === 'completed'
-                    ? 'bg-brand-success/10 text-brand-success'
-                    : 'bg-brand-warning/10 text-brand-warning animate-pulse'
+                  ? 'bg-brand-success/10 text-brand-success'
+                  : 'bg-brand-warning/10 text-brand-warning animate-pulse'
                   }`}>
                   {testStatus}
                 </span>
@@ -314,12 +314,12 @@ export default function Hero() {
                   <div
                     key={idx}
                     className={`${log.includes('✓')
-                        ? 'text-green-400 font-semibold'
-                        : log.includes('$')
-                          ? 'text-slate-400'
-                          : log.includes('passed')
-                            ? 'text-green-400 font-bold'
-                            : 'text-slate-300'
+                      ? 'text-green-400 font-semibold'
+                      : log.includes('$')
+                        ? 'text-slate-400'
+                        : log.includes('passed')
+                          ? 'text-green-400 font-bold'
+                          : 'text-slate-300'
                       }`}
                   >
                     {log}
@@ -358,8 +358,8 @@ export default function Hero() {
                     <span
                       key={index}
                       className={`text-[10px] px-2.5 py-1 rounded-full border transition-all duration-300 flex items-center gap-1 ${isDone
-                          ? 'bg-brand-success/10 border-brand-success/30 text-brand-success font-semibold'
-                          : 'bg-brand-surface/40 border-brand-border text-brand-text-muted opacity-60'
+                        ? 'bg-brand-success/10 border-brand-success/30 text-brand-success font-semibold'
+                        : 'bg-brand-surface/40 border-brand-border text-brand-text-muted opacity-60'
                         }`}
                     >
                       {isDone && <CheckCircle2 size={9} />}
