@@ -39,7 +39,7 @@ const experiences: ExperienceEntry[] = [
   },
   {
     company: 'Viaansh Infotech LLP',
-    role: 'Back End Developer - Intern',
+    role: 'Back End Developer',
     period: 'Apr 2025 – Jul 2025',
     location: 'Ahmedabad, Gujarat',
     skillsDeveloped: [
