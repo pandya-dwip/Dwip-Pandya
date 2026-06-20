@@ -52,7 +52,7 @@ const experiences: ExperienceEntry[] = [
   {
     company: 'Akash TechnoLabs',
     role: 'Laravel & PHP Developer Intern',
-    period: 'Oct 2024 – Apr 2026',
+    period: 'Oct 2024 – Apr 2024',
     location: 'Ahmedabad, Gujarat',
     skillsDeveloped: [
       'Designing databases and coding custom plugins with Laravel backend modules.',
