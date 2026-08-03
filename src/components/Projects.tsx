@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion as framerMotion } from 'framer-motion';
-import { Network, Smartphone, Folder, Star, Sparkles, Activity, TrendingUp, Clock } from 'lucide-react';
+import { Network, Smartphone, Folder, Star, Sparkles, Activity, TrendingUp, Clock, FileText, Command, LayoutGrid, Wallet, MapPin, Search } from 'lucide-react';
 import { GitHubIcon } from './BrandIcons';
+
+type ProjectTab = 'qa' | 'applications' | 'chrome-extensions';
 
 interface Project {
   id: number;
@@ -11,8 +13,15 @@ interface Project {
   tech: string[];
   bullets: string[];
   github?: string;
-  visual: 'dashboard' | 'telemetry' | 'mobile' | 'browser' | 'api' | 'nuvio';
+  visual: 'dashboard' | 'telemetry' | 'mobile' | 'browser' | 'api' | 'nuvio' | 'notes' | 'kanban' | 'finance' | 'places';
+  tab: ProjectTab;
 }
+
+const TABS: { id: ProjectTab; label: string }[] = [
+  { id: 'qa', label: 'QA' },
+  { id: 'applications', label: 'Applications' },
+  { id: 'chrome-extensions', label: 'Chrome Extensions' },
+];
 
 const projects: Project[] = [
   {
@@ -28,6 +37,7 @@ const projects: Project[] = [
     tech: ['Vite', 'React', 'ExcelJS', 'Tailwind CSS'],
     github: 'https://github.com/pandya-dwip/qa-report-generator',
     visual: 'dashboard',
+    tab: 'qa',
   },
   {
     id: 2,
@@ -42,6 +52,7 @@ const projects: Project[] = [
     tech: ['Python', 'PyTest', 'MQTT', 'CSV'],
     github: 'https://github.com/pandya-dwip/RTU-Monitoring',
     visual: 'telemetry',
+    tab: 'qa',
   },
   {
     id: 3,
@@ -55,6 +66,7 @@ const projects: Project[] = [
     ],
     tech: ['Flutter', 'Dart', 'Integration Test', 'GetIt'],
     visual: 'mobile',
+    tab: 'qa',
   },
   {
     id: 4,
@@ -68,6 +80,7 @@ const projects: Project[] = [
     ],
     tech: ['Playwright', 'TypeScript', 'JavaScript', 'Page Object Model'],
     visual: 'browser',
+    tab: 'qa',
   },
   {
     id: 5,
@@ -81,6 +94,7 @@ const projects: Project[] = [
     ],
     tech: ['Postman', 'JavaScript', 'Newman', 'REST APIs'],
     visual: 'api',
+    tab: 'qa',
   },
   {
     id: 6,
@@ -95,6 +109,67 @@ const projects: Project[] = [
     tech: ['Flutter', 'Dart', 'Riverpod', 'SharedPreferences', 'Path Provider'],
     github: 'https://github.com/pandya-dwip/nuvio',
     visual: 'nuvio',
+    tab: 'applications',
+  },
+  {
+    id: 7,
+    title: 'StickyNote',
+    category: 'Chrome Extension — Manifest V3, Offline-First Productivity Workspace',
+    description: 'Designed and developed a feature-rich offline-first Chrome extension for note-taking and productivity with a modern glassmorphism interface, dual-layout workspace, interactive Markdown editor, integrated fake data generator, and privacy-focused local storage.',
+    bullets: [
+      'Built a responsive dual-layout experience (Launcher & Workspace) with document management, favorites, templates, archive, trash, drag-and-drop organization, and a Raycast-inspired Command Palette.',
+      'Implemented a real-time Markdown editor with live preview, synchronized interactive checklists, smart list continuation, autosave, comprehensive keyboard shortcuts, and customizable themes and typography.',
+      'Developed an offline Fake Data Generator, JSON backup & restore, storage usage tracker, and a secure Manifest V3 architecture with zero external dependencies to ensure complete user privacy.'
+    ],
+    tech: ['JavaScript', 'HTML5', 'CSS3', 'Chrome Extension Manifest V3', 'Chrome Storage API', 'Markdown', 'Lucide Icons'],
+    github: 'https://github.com/pandya-dwip/Sticky-notes',
+    visual: 'notes',
+    tab: 'chrome-extensions',
+  },
+  {
+    id: 8,
+    title: 'Clair',
+    category: 'Chrome Extension — Manifest V3, SQLite, Project Management',
+    description: 'Designed and developed a local-first Chrome extension for project, task, release, and QA management with SQLite-powered offline persistence, Kanban workflows, analytics dashboards, and comprehensive project coordination features.',
+    bullets: [
+      'Built a complete project management workspace featuring project lifecycle tracking, task and release Kanban boards, test case management, developer assignment, audit logs, and interactive analytics dashboards with Chart.js.',
+      'Implemented an offline-first persistence layer using SQLite (sql.js) with IndexedDB storage, automatic migration from chrome.storage.local, JSON backup & restore, and secure Manifest V3 architecture.',
+      'Developed advanced productivity features including global search, drag-and-drop workflows, dynamic filtering, theme customization, Excel & JSON export, responsive UI, and keyboard shortcuts for efficient project coordination.'
+    ],
+    tech: ['JavaScript', 'HTML5', 'CSS3', 'Chrome Extension Manifest V3', 'SQLite (sql.js)', 'IndexedDB', 'Chart.js', 'ExcelJS'],
+    github: 'https://github.com/pandya-dwip/project-extension',
+    visual: 'kanban',
+    tab: 'chrome-extensions',
+  },
+  {
+    id: 9,
+    title: 'GoNext',
+    category: 'Mobile Application — Flutter, Riverpod, Hive',
+    description: 'Designed and developed an offline-first Flutter application for organizing and managing favorite restaurants, shopping destinations, and travel locations with integrated maps, local storage, and privacy-focused architecture.',
+    bullets: [
+      'Built a unified dashboard featuring intelligent search, categorized directories, overview analytics, recent activity, and wishlist previews for restaurants, clothing stores, and travel destinations.',
+      'Implemented complete CRUD functionality with Hive local database, Google Maps integration, reverse geocoding, GPS location retrieval, photo management, and one-tap navigation to saved places.',
+      'Developed a modern, privacy-first architecture using Riverpod, GoRouter, and modular feature-based design with responsive UI, offline persistence, customizable themes, and zero cloud dependency.'
+    ],
+    tech: ['Flutter', 'Dart', 'Riverpod', 'Hive', 'GoRouter', 'Google Maps Flutter', 'Geolocator', 'Geocoding'],
+    github: 'https://github.com/pandya-dwip/gonext',
+    visual: 'places',
+    tab: 'applications',
+  },
+  {
+    id: 10,
+    title: 'Expense Manager',
+    category: 'Mobile Application — Flutter, Drift (SQLite), Provider',
+    description: 'Designed and developed a modern offline-first personal finance management application with multi-account support, advanced budgeting, analytics, customizable themes, secure local storage, and comprehensive financial tracking.',
+    bullets: [
+      'Built a complete personal finance ecosystem featuring multi-account wallet management, income, expense and transfer tracking, budget planning, financial health scoring, interactive analytics, and customizable category management.',
+      'Implemented a robust offline architecture using Drift (SQLite) with CSV export, database backup & restore, PIN authentication, profile management, world currency support, and secure on-device data storage.',
+      'Developed a premium Material 3 interface with dynamic accent color customization, dark/light themes, interactive charts, advanced transaction filtering, and responsive state management using Provider.'
+    ],
+    tech: ['Flutter', 'Dart', 'Drift (SQLite)', 'Provider', 'Material 3', 'fl_chart', 'SharedPreferences', 'Google Fonts'],
+    github: 'https://github.com/pandya-dwip/expense_manager',
+    visual: 'finance',
+    tab: 'applications',
   },
 ];
 
@@ -656,9 +731,9 @@ function BrowserMockup() {
           <span>{progress}% Completed</span>
         </div>
         <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden border border-slate-850">
-          <div 
-            className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-500" 
-            style={{ width: `${progress}%` }} 
+          <div
+            className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-500"
+            style={{ width: `${progress}%` }}
           />
         </div>
       </div>
@@ -672,10 +747,9 @@ function BrowserMockup() {
         {tests.map((t, idx) => (
           <div key={idx} className="flex justify-between items-center text-slate-350 text-left py-0.5 border-b border-slate-800/25 last:border-none animate-fadeIn">
             <div className="flex items-center gap-1.5 font-mono truncate max-w-[145px]">
-              <span className={`px-1 py-0.2 rounded font-sans uppercase font-bold text-[5px] ${
-                t.browser === 'chromium' ? 'bg-blue-500/10 text-blue-400' :
+              <span className={`px-1 py-0.2 rounded font-sans uppercase font-bold text-[5px] ${t.browser === 'chromium' ? 'bg-blue-500/10 text-blue-400' :
                 t.browser === 'firefox' ? 'bg-orange-500/10 text-orange-400' : 'bg-pink-500/10 text-pink-400'
-              }`}>
+                }`}>
                 {t.browser}
               </span>
               <span className="truncate">{t.name}</span>
@@ -949,7 +1023,277 @@ function NuvioMockup() {
   );
 }
 
+function NotesMockup() {
+  const [checked, setChecked] = useState([true, false, false]);
+  const [typedText, setTypedText] = useState('');
+  const [saved, setSaved] = useState(true);
+
+  useEffect(() => {
+    const fullText = '## Q3 Launch Checklist\nDraft the release notes...';
+    let charIdx = 0;
+    const typeInterval = setInterval(() => {
+      setSaved(false);
+      setTypedText(fullText.slice(0, charIdx));
+      charIdx++;
+      if (charIdx > fullText.length) {
+        charIdx = 0;
+        setSaved(true);
+      }
+    }, 90);
+    return () => clearInterval(typeInterval);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setChecked((prev) => {
+        const idx = Math.floor(Math.random() * prev.length);
+        const next = [...prev];
+        next[idx] = !next[idx];
+        return next;
+      });
+    }, 2200);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="w-full h-full bg-slate-950/90 border border-slate-800 rounded-xl p-3 sm:p-4 text-slate-300 flex flex-col gap-3 overflow-hidden shadow-2xl relative select-none">
+      <div className="flex justify-between items-center pb-2 border-b border-slate-800/80">
+        <div className="flex items-center gap-2 text-left">
+          <Command size={12} className="text-amber-400" />
+          <span className="text-[10px] font-bold text-slate-200 uppercase tracking-widest font-mono">StickyNote — Workspace</span>
+        </div>
+        <span className={`text-[8px] font-mono px-1.5 py-0.5 rounded border ${saved ? 'text-emerald-400 border-emerald-500/20 bg-emerald-500/10' : 'text-amber-400 border-amber-500/20 bg-amber-500/10 animate-pulse'}`}>
+          {saved ? 'Saved' : 'Saving…'}
+        </span>
+      </div>
+
+      <div className="grid grid-cols-3 gap-2">
+        <div className="bg-slate-900/60 p-1.5 rounded-lg border border-slate-800/80 flex flex-col justify-between h-[40px] text-left">
+          <span className="text-[7px] text-slate-500 font-bold uppercase tracking-wider">Docs</span>
+          <span className="text-xs font-black text-slate-200 font-mono">38</span>
+        </div>
+        <div className="bg-slate-900/60 p-1.5 rounded-lg border border-slate-800/80 flex flex-col justify-between h-[40px] text-left">
+          <span className="text-[7px] text-slate-500 font-bold uppercase tracking-wider">Favorites</span>
+          <span className="text-xs font-black text-amber-400 font-mono">6</span>
+        </div>
+        <div className="bg-slate-900/60 p-1.5 rounded-lg border border-slate-800/80 flex flex-col justify-between h-[40px] text-left">
+          <span className="text-[7px] text-slate-500 font-bold uppercase tracking-wider">Storage</span>
+          <span className="text-xs font-black text-brand-primary font-mono">1.2mb</span>
+        </div>
+      </div>
+
+      <div className="flex-grow bg-slate-900/40 rounded-lg border border-slate-900 p-2.5 flex flex-col gap-1.5 text-left min-h-[95px]">
+        <div className="flex items-center gap-1 text-[7px] text-slate-500 uppercase font-mono">
+          <FileText size={9} className="text-slate-500" />
+          <span>launch-notes.md</span>
+        </div>
+        <p className="text-[7px] text-slate-400 font-mono whitespace-pre-line leading-relaxed">
+          {typedText}
+          <span className="inline-block w-1 h-2.5 bg-brand-primary animate-pulse align-middle ml-0.5" />
+        </p>
+        <div className="mt-auto space-y-1">
+          {['Draft release notes', 'Update changelog', 'Notify beta testers'].map((item, idx) => (
+            <div key={idx} className="flex items-center gap-1.5">
+              <input type="checkbox" checked={checked[idx]} readOnly className="w-2 h-2 rounded-sm accent-amber-500 pointer-events-none" />
+              <span className={`text-[6.5px] transition-all duration-300 ${checked[idx] ? 'line-through text-slate-600' : 'text-slate-350'}`}>{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const KANBAN_COLUMNS = ['To Do', 'In Progress', 'Done'] as const;
+
+function KanbanMockup() {
+  const [board, setBoard] = useState<number[]>([3, 2, 5]);
+  const [cycle, setCycle] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBoard((prev) => {
+        const from = Math.floor(Math.random() * 2);
+        const next = [...prev];
+        if (next[from] > 0) {
+          next[from] -= 1;
+          next[from + 1] += 1;
+        }
+        return next;
+      });
+      setCycle((c) => c + 1);
+    }, 2400);
+    return () => clearInterval(interval);
+  }, []);
+
+  const total = board.reduce((a, b) => a + b, 0);
+  const completion = Math.round((board[2] / total) * 100);
+
+  return (
+    <div className="w-full h-full bg-slate-950/90 border border-slate-800 rounded-xl p-3 sm:p-4 text-slate-300 flex flex-col gap-3 overflow-hidden shadow-2xl relative select-none">
+      <div className="flex justify-between items-center pb-2 border-b border-slate-800/80">
+        <div className="flex items-center gap-2 text-left">
+          <LayoutGrid size={12} className="text-sky-400" />
+          <span className="text-[10px] font-bold text-slate-200 uppercase tracking-widest font-mono">Clair — Sprint Board</span>
+        </div>
+        <span className="text-[8px] font-mono text-slate-500 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">SQLite · Local #{cycle}</span>
+      </div>
+
+      <div className="grid grid-cols-3 gap-2 flex-grow">
+        {KANBAN_COLUMNS.map((col, idx) => (
+          <div key={col} className="bg-slate-900/50 rounded-lg border border-slate-800/80 p-1.5 flex flex-col gap-1 text-left min-h-[100px]">
+            <span className="text-[6.5px] font-bold uppercase tracking-wider text-slate-500">{col}</span>
+            <span className={`text-sm font-black font-mono ${idx === 2 ? 'text-emerald-400' : idx === 1 ? 'text-sky-400' : 'text-slate-300'}`}>{board[idx]}</span>
+            <div className="flex flex-col gap-1 mt-1">
+              {Array.from({ length: Math.min(board[idx], 3) }).map((_, cardIdx) => (
+                <div key={cardIdx} className="h-2.5 rounded bg-slate-800/80 border border-slate-800 animate-fadeIn" />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="bg-slate-900/60 p-2 rounded-lg border border-slate-800/80 text-left">
+        <div className="flex justify-between items-center text-[7px] font-mono text-slate-500 mb-1">
+          <span>Completion Rate</span>
+          <span>{completion}%</span>
+        </div>
+        <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden border border-slate-850">
+          <div className="h-full bg-gradient-to-r from-sky-500 to-emerald-500 rounded-full transition-all duration-700" style={{ width: `${completion}%` }} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FinanceMockup() {
+  const [balance, setBalance] = useState(48210);
+  const [bars] = useState([40, 65, 30, 80, 55, 90, 45]);
+  const [txns, setTxns] = useState([
+    { label: 'Grocery Store', amount: -840, type: 'expense' },
+    { label: 'Salary Credit', amount: 52000, type: 'income' },
+    { label: 'Electricity Bill', amount: -1240, type: 'expense' },
+  ]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const isIncome = Math.random() > 0.7;
+      const amount = isIncome ? Math.floor(500 + Math.random() * 4000) : -Math.floor(100 + Math.random() * 900);
+      setBalance((prev) => prev + amount);
+      setTxns((prev) => {
+        const labels = ['Coffee Shop', 'Fuel', 'Freelance Payment', 'Subscription', 'Dining Out'];
+        const next = [{ label: labels[Math.floor(Math.random() * labels.length)], amount, type: isIncome ? 'income' : 'expense' }, ...prev];
+        next.length = 3;
+        return next;
+      });
+    }, 2600);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="w-full h-full flex justify-center items-center select-none">
+      <div className="w-[170px] h-[300px] rounded-[32px] bg-slate-900 border-4 border-slate-800 p-2 flex flex-col justify-between shadow-2xl relative">
+        <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-3 bg-slate-800 rounded-full z-20" />
+
+        <div className="w-full h-full rounded-[24px] bg-slate-950 border border-slate-900 p-3 font-sans text-[8px] text-slate-400 flex flex-col justify-between overflow-hidden">
+          <div className="flex justify-between items-center pt-2">
+            <span className="text-[10px] font-bold text-slate-100 flex items-center gap-1">
+              <Wallet size={10} className="text-teal-400" /> Expense
+            </span>
+            <span className="text-[7px] text-teal-400 bg-teal-500/10 px-1.5 py-0.5 rounded border border-teal-500/20 font-mono">Offline</span>
+          </div>
+
+          <div className="mt-2 bg-slate-900/70 rounded-lg border border-slate-800 p-2 text-left">
+            <span className="text-[6.5px] text-slate-500 font-bold uppercase tracking-wider">Total Balance</span>
+            <div className="text-[13px] font-black text-teal-400 font-mono leading-tight">₹{balance.toLocaleString('en-IN')}</div>
+          </div>
+
+          <div className="mt-2 bg-slate-900/40 rounded-lg border border-slate-900 p-1.5 flex items-end gap-1 h-[52px]">
+            {bars.map((h, idx) => (
+              <div key={idx} className="flex-1 bg-gradient-to-t from-teal-500/70 to-brand-primary/60 rounded-sm transition-all duration-500" style={{ height: `${h}%` }} />
+            ))}
+          </div>
+
+          <div className="flex-grow mt-2 space-y-1 text-[7px] bg-slate-900/60 p-2 rounded-lg border border-slate-800/80 min-h-[70px] flex flex-col justify-start">
+            <span className="text-[6px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">Recent</span>
+            {txns.map((t, idx) => (
+              <div key={idx} className="flex justify-between items-center text-left py-0.5 border-b border-slate-800/20 last:border-none animate-fadeIn">
+                <span className="truncate max-w-[75px] text-slate-300">{t.label}</span>
+                <span className={`font-mono font-bold ${t.type === 'income' ? 'text-emerald-400' : 'text-rose-400'}`}>
+                  {t.type === 'income' ? '+' : '−'}₹{Math.abs(t.amount).toLocaleString('en-IN')}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const GONEXT_CATEGORIES = [
+  { name: 'Restaurants', count: 14, color: 'text-rose-400', border: 'border-rose-500/40' },
+  { name: 'Shopping', count: 9, color: 'text-amber-400', border: 'border-amber-500/40' },
+  { name: 'Travel', count: 7, color: 'text-sky-400', border: 'border-sky-500/40' },
+];
+
+function PlacesMockup() {
+  const [activeCategory, setActiveCategory] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveCategory((prev) => (prev + 1) % GONEXT_CATEGORIES.length);
+    }, 2200);
+    return () => clearInterval(interval);
+  }, []);
+
+  const active = GONEXT_CATEGORIES[activeCategory];
+
+  return (
+    <div className="w-full h-full flex justify-center items-center select-none">
+      <div className="w-[170px] h-[300px] rounded-[32px] bg-slate-900 border-4 border-slate-800 p-2 flex flex-col justify-between shadow-2xl relative">
+        <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-3 bg-slate-800 rounded-full z-20" />
+
+        <div className="w-full h-full rounded-[24px] bg-slate-950 border border-slate-900 p-3 font-sans text-[8px] text-slate-400 flex flex-col justify-between overflow-hidden">
+          <div className="flex justify-between items-center pt-2">
+            <span className="text-[10px] font-bold text-slate-100 flex items-center gap-1">
+              <MapPin size={10} className="text-teal-400" /> GoNext
+            </span>
+            <span className="text-[7px] text-slate-500 font-mono">Offline</span>
+          </div>
+
+          <div className="mt-2 bg-slate-900/70 rounded-lg border border-slate-800 px-2 py-1.5 flex items-center gap-1.5">
+            <Search size={9} className="text-slate-500" />
+            <span className="text-[6.5px] text-slate-500">Search saved places…</span>
+          </div>
+
+          <div className="mt-3 flex-grow flex flex-col gap-1.5">
+            {GONEXT_CATEGORIES.map((cat, idx) => (
+              <div
+                key={cat.name}
+                className={`p-1.5 rounded-lg border transition-all duration-300 flex items-center justify-between ${idx === activeCategory ? `bg-slate-900 shadow-sm ${cat.border}` : 'bg-slate-900/40 border-slate-800'
+                  }`}
+              >
+                <span className={`text-[7px] font-bold ${idx === activeCategory ? cat.color : 'text-slate-300'}`}>{cat.name}</span>
+                <span className="text-[6px] text-slate-500 font-mono">{cat.count} saved</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="pt-2 border-t border-slate-900/80 flex items-center gap-1.5">
+            <MapPin size={9} className={active.color} />
+            <span className="text-[6px] text-slate-500 truncate">Nearest: {active.name} · 1.2km</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Projects() {
+  const [activeTab, setActiveTab] = useState<ProjectTab>('qa');
+  const visibleProjects = projects.filter((p) => p.tab === activeTab);
+
   const renderVisualMockup = (type: string) => {
     switch (type) {
       case 'dashboard':
@@ -964,6 +1308,14 @@ export default function Projects() {
         return <ApiMockup />;
       case 'nuvio':
         return <NuvioMockup />;
+      case 'notes':
+        return <NotesMockup />;
+      case 'kanban':
+        return <KanbanMockup />;
+      case 'finance':
+        return <FinanceMockup />;
+      case 'places':
+        return <PlacesMockup />;
       default:
         return null;
     }
@@ -980,7 +1332,7 @@ export default function Projects() {
       <div className="max-w-7xl w-full mx-auto relative z-10">
 
         {/* Section Header */}
-        <div className="text-left mb-24">
+        <div className="text-left mb-8">
           <div className="flex items-center gap-2 mb-4">
             <span className="h-px w-8 bg-brand-primary" />
             <span className="text-xs font-mono font-bold tracking-widest text-brand-primary uppercase">Case Studies</span>
@@ -990,9 +1342,36 @@ export default function Projects() {
           </h2>
         </div>
 
+        {/* Tabs */}
+        <div className="flex flex-wrap justify-center gap-2 mb-16">
+          {TABS.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-4 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 border cursor-pointer ${activeTab === tab.id
+                ? 'bg-brand-text text-brand-bg border-brand-text shadow-sm'
+                : 'bg-brand-surface text-brand-text-muted border-brand-border hover:text-brand-text hover:border-brand-text/40'
+                }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
         {/* Projects List with Alternating Layouts */}
-        <div className="space-y-32">
-          {projects.map((proj, index) => {
+        <framerMotion.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
+          className="space-y-32"
+        >
+          {visibleProjects.length === 0 && (
+            <div className="text-center py-24 text-brand-text-muted text-sm sm:text-base">
+              No Chrome Extensions available yet.
+            </div>
+          )}
+          {visibleProjects.map((proj, index) => {
             const isEven = index % 2 === 0;
             return (
               <framerMotion.div
@@ -1071,7 +1450,7 @@ export default function Projects() {
               </framerMotion.div>
             );
           })}
-        </div>
+        </framerMotion.div>
       </div>
     </section>
   );
