@@ -1,73 +1,116 @@
-# React + TypeScript + Vite
+# Dwip Pandya — Software QA Engineer & SDET Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, high-performance, dark-themed portfolio website for **Dwip Pandya** (Software QA Engineer & SDET). Built with **React 19**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, **GSAP**, and **Vite**. Hosted live at **[https://dwip.in](https://dwip.in)**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🌟 Features & Highlights
 
-## React Compiler
+- **⚡ Sleek Glassmorphic UI:** Premium dark design system featuring dynamic glow effects, cinematic grain overlays, and custom glassmorphism.
+- **🌀 Smooth Momentum Scrolling:** Integrated `@studio-freight/lenis` smooth scroll engine for fluid scrolling transitions.
+- **🧲 Magnetic Interactions:** Custom `useMagnetic` hook providing dynamic magnetic hover effects on buttons and interactive components.
+- **📁 Categorized Project Showcase:** Interactive project gallery filtering through Automation Frameworks, Web Apps, Chrome Extensions, and Mobile Applications (Clair, GoNext, Sticky Notes, QA Report Generator, etc.).
+- **📊 Experience & Impact Metrics:** Detailed timeline highlighting QA achievements, test coverage stats, and test engineering workflows.
+- **📱 Fully Responsive & Accessible:** Optimized for seamless performance across desktop, tablet, and mobile devices.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Layer | Technology |
+| :--- | :--- |
+| **Framework** | React 19 & TypeScript |
+| **Build Tool** | Vite |
+| **Styling** | Tailwind CSS & Custom CSS Utilities |
+| **Animations** | Framer Motion & GSAP |
+| **Smooth Scroll** | `@studio-freight/lenis` |
+| **Icons** | Lucide React & Custom SVG Brand Icons |
+| **Deployment** | Apache Web Server (Hostinger FTP / FileZilla) |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📂 Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+Dwip-Pandya/
+├── public/
+│   ├── .htaccess               # Apache SPA rewrite rules & DirectoryIndex
+│   ├── favicon.svg             # Website favicon
+│   └── icons.svg               # SVG sprite assets
+├── src/
+│   ├── assets/                 # Static images and media
+│   ├── components/             # UI Components
+│   │   ├── Navbar.tsx          # Floating header navigation
+│   │   ├── Hero.tsx            # Hero section with stats & CTAs
+│   │   ├── About.tsx           # QA philosophy & bio
+│   │   ├── Experience.tsx      # Career timeline & achievements
+│   │   ├── Skills.tsx          # Technical skills & tools
+│   │   ├── Projects.tsx        # Filterable project showcase
+│   │   ├── Contact.tsx         # Contact form & social channels
+│   │   ├── Footer.tsx          # Footer & quick links
+│   │   └── BrandIcons.tsx      # Custom tech stack SVGs
+│   ├── hooks/                  # Custom React hooks (useLenis, useMagnetic)
+│   ├── App.tsx                 # Root Application layout
+│   ├── index.css               # Global styles & glassmorphism utilities
+│   └── main.tsx                # React DOM entry point
+├── dist/                       # Production build output (generated after build)
+├── package.json                # Project dependencies & scripts
+├── tailwind.config.js          # Tailwind CSS theme configuration
+└── vite.config.ts              # Vite configuration
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 💻 Local Development Setup
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm or yarn
+
+### 1. Clone & Install Dependencies
+```bash
+git clone https://github.com/pandya-dwip/Dwip-Pandya.git
+cd Dwip-Pandya
+npm install
 ```
+
+### 2. Run Local Development Server
+```bash
+npm run dev
+```
+Open your browser and navigate to `http://localhost:5173`.
+
+### 3. Build for Production
+```bash
+npm run build
+```
+This compiles TypeScript, bundles React assets, and outputs optimized production files into the `dist/` directory (including `.htaccess`).
+
+
+## 🚀 Phase 2 Plan: Standalone Sub-Directory Projects
+
+In **Phase 2**, standalone display projects (e.g. non-tech portfolios, showcase sites, and custom sub-projects) will be hosted alongside the main portfolio under dedicated sub-paths (e.g., `dwip.in/<project-name>`).
+
+### Server Architecture for Standalone Projects
+
+Each standalone project will reside in its own subfolder inside `/public_html`:
+
+```
+public_html/
+├── .htaccess            # Main Portfolio Apache SPA Router
+├── index.html           # Main Portfolio Entry (dwip.in)
+├── assets/              # Main Portfolio Assets
+└── <project-name>/      # Standalone Display Project (dwip.in/<project-name>)
+    ├── index.html       # Standalone project entry point
+    └── assets/          # Standalone project assets
+```
+
+### How to Deploy a Standalone Sub-Directory Project:
+
+1. Connect to the server via **FileZilla** / FTP.
+2. Navigate to `/public_html`.
+3. Create a new directory named after the project (e.g., `/public_html/<project-name>`).
+4. Upload all build output files of that standalone project directly into `/public_html/<project-name>/`.
+5. Access your new standalone project live at `https://dwip.in/<project-name>`.
+
+*Note: The root `.htaccess` file is pre-configured with `RewriteCond %{REQUEST_FILENAME} !-d` so Apache automatically detects and serves sub-directory projects without route conflicts.*
