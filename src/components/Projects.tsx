@@ -25,6 +25,21 @@ const TABS: { id: ProjectTab; label: string }[] = [
 
 const projects: Project[] = [
   {
+    id: 11,
+    title: 'Nuvora Enterprise CI/CD Pipeline',
+    category: 'GitHub Actions, Playwright E2E, Self-Healing Rollback Engine',
+    description: 'Engineered an enterprise-grade CI/CD pipeline featuring a 3-stage sequential quality gate (ESLint static analysis, Vite compilation, 53 Playwright E2E browser tests) with an autonomous self-healing rollback engine for zero-downtime Vercel production deployment.',
+    bullets: [
+      'Designed a 3-stage quality gate enforcing ESLint static code analysis, Vite build compilation, and 53 Playwright E2E browser test scenarios.',
+      'Implemented an 80% passing boundary metric evaluator that halts the pipeline and blocks Vercel deployment if test compliance drops below 80.00%.',
+      'Engineered an autonomous self-healing rollback engine using GitHub Actions & GitHub CLI (`gh workflow run`) that automatically reverts broken commits on main (`git revert HEAD`), restores clean code, and re-dispatches pipeline runs without human intervention.'
+    ],
+    tech: ['GitHub Actions', 'Playwright', 'Node.js', 'Vite', 'Vercel', 'CI/CD', 'ESLint', 'TypeScript'],
+    github: 'https://github.com/pandya-dwip/Nuvora',
+    visual: 'browser',
+    tab: 'qa',
+  },
+  {
     id: 1,
     title: 'Custom Test Execution & Reporting Platform',
     category: 'Internal Tool — Vite, ExcelJS, Chart.js, Google Sheets API',

@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Target, Shield, Bug, Database, Layers, Terminal, Award } from 'lucide-react';
+import { getDynamicExperienceText } from '../utils/experience';
 
 interface Stat {
   value: number;
@@ -115,13 +116,19 @@ export default function About() {
 
             <motion.div variants={itemVariants} className="space-y-6 text-brand-text-muted text-base sm:text-lg leading-relaxed">
               <p>
-                With 7 months of QA engineering experience, I design scalable test automation frameworks and custom internal tools that eliminate manual bottlenecks and accelerate software delivery.
+                With {getDynamicExperienceText()} of QA engineering experience, I design scalable test automation frameworks, self-healing CI/CD pipelines, and custom internal tools that eliminate manual bottlenecks and accelerate software delivery.
               </p>
               <ul className="space-y-3.5 text-sm sm:text-base text-left">
                 <li className="flex items-start gap-3">
                   <span className="text-brand-primary select-none mt-1.5">▪</span>
                   <span>
                     <strong>Full-Stack Automation:</strong> Developing end-to-end test suites covering web (Playwright JS/TS), mobile (Flutter integration_test for Android & iOS), and APIs (Postman).
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-brand-primary select-none mt-1.5">▪</span>
+                  <span>
+                    <strong>CI/CD & Self-Healing Pipelines:</strong> Engineering automated GitHub Actions workflows with quality gates, 80% pass threshold evaluation, and autonomous commit rollback triggers.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">

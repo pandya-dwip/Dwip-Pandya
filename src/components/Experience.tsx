@@ -19,11 +19,12 @@ const experiences: ExperienceEntry[] = [
     location: 'Ahmedabad, Gujarat',
     skillsDeveloped: [
       'Architecting Playwright (TS/JS) automation wrappers for E2E web application testing.',
+      'Designing Enterprise CI/CD self-healing pipelines with GitHub Actions, metric threshold gates (80% boundary), and autonomous git commit rollback workflows.',
       'Mobile QA E2E automation suites utilizing Flutter integration_test on Android & iOS.',
       'Configuring automated API testing beds in Postman and mock validation pipelines.',
       'Developing custom test execution & reporting portals using Vite and ExcelJS to eliminate manual reporting workflows.'
     ],
-    tech: ['TypeScript Playwright Automation', 'Flutter Automation Testing', 'Python Playwright Automation', 'ExcelJS', 'Vite', 'JIRA', 'Bitbucket']
+    tech: ['TypeScript Playwright Automation', 'GitHub Actions CI/CD', 'Self-Healing Pipelines', 'Flutter Automation Testing', 'Python Playwright Automation', 'ExcelJS', 'Vite', 'JIRA', 'Bitbucket']
   },
   {
     company: 'Infopercept Consulting Pvt Ltd',

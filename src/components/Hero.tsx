@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Code, Cpu, ArrowRight, FileText } from 'lucide-react';
+import { CheckCircle2, Code, Cpu, ArrowRight } from 'lucide-react';
 
 const roles = [
   'Software QA Engineer',
@@ -209,7 +209,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="text-lg sm:text-xl text-brand-text-muted max-w-xl mb-10 leading-relaxed font-normal"
           >
-            I specialize in developing automation solutions for web, mobile, and API testing, with experience in Playwright, Flutter integration testing, and custom QA reporting dashboards focused on improving software quality and testing efficiency.
+            I specialize in developing end-to-end test automation suites (Playwright, Flutter), self-healing CI/CD pipelines (GitHub Actions), and custom QA tools focused on eliminating manual bottlenecks and accelerating software delivery.
           </motion.p>
 
           {/* Call to action buttons */}
@@ -235,16 +235,6 @@ export default function Hero() {
             >
               Contact Me
             </button>
-
-            {/* Download Resume Link */}
-            <a
-              href="/Software_QA_Engineer.pdf"
-              download="Software_QA_Engineer.pdf"
-              className="magnetic px-5 py-3.5 bg-transparent hover:bg-brand-surface/20 text-brand-text-muted hover:text-brand-text rounded-xl font-semibold text-sm tracking-wide transition-all duration-300 flex items-center gap-2"
-            >
-              <FileText size={16} />
-              <span>Resume</span>
-            </a>
           </motion.div>
         </div>
 

@@ -37,7 +37,8 @@ const skillsData: Skill[] = [
       'Playwright (JavaScript, TypeScript, Python)',
       'Page Object Model (POM)',
       'UI Automation Framework Design',
-      'Locators & Wait Strategies'
+      'Locators & Wait Strategies',
+      'Continuous E2E Quality Gates & HTML Reports'
     ]
   },
   {
@@ -160,6 +161,19 @@ const skillsData: Skill[] = [
   },
 
   // Tools & Platforms
+  {
+    name: 'GitHub Actions & CI/CD',
+    category: 'Tools & Platforms',
+    logoSlug: 'githubactions',
+    iconName: 'tools',
+    desc: 'Enterprise CI/CD pipelines & self-healing rollback automation.',
+    logs: [
+      'GitHub Actions Workflows',
+      'Automated Quality Gates & Threshold Evaluation',
+      'Self-Healing Commit Rollbacks (git revert & gh cli)',
+      'Vercel Zero-Downtime Deployment Guards'
+    ]
+  },
   {
     name: 'Git',
     category: 'Tools & Platforms',
